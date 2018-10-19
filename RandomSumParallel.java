@@ -7,9 +7,9 @@ public class RandomSumParallel {
   private static final ThreadLocal<Random> random = ThreadLocal.withInitial(Random::new);
 
   public static void main(String... args) throws Exception {
-		long startedAt = System.nanoTime();
+    long startedAt = System.nanoTime();
 
-  	double sum = DoubleStream.generate(() -> random.get().nextDouble())
+    double sum = DoubleStream.generate(() -> random.get().nextDouble())
         .parallel()
         .limit(100000000)
         .sum();
