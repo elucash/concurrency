@@ -2,14 +2,13 @@
 import java.util.Random;
 import java.util.stream.DoubleStream;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomSumParallel {
-  private static final ThreadLocal<Random> random = ThreadLocal.withInitial(Random::new);
-
   public static void main(String... args) throws Exception {
     long startedAt = System.nanoTime();
 
-    double sum = DoubleStream.generate(() -> random.get().nextDouble())
+    double sum = DoubleStream.generate(() -> ThreadLocalRandom.current().nextDouble())
         .parallel()
         .limit(100000000)
         .sum();
